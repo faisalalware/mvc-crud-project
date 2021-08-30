@@ -1,0 +1,30 @@
+﻿@model mvc_crud_project.Models.Category
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Edit Category</h3>
+
+@using (Html.BeginForm("Edit", "Categories", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <hr />
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Name</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Enter Category Name" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "error" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a href="@Url.Action("Index")" class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
+    </div>
+}

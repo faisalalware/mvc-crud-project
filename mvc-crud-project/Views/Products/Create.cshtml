@@ -1,0 +1,35 @@
+﻿@model mvc_crud_project.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Create Product</h3>
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post))
+{
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        <label class="col-md-2 control-label">Name</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Enter Product Name" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "error" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Category</label>
+        <div class="col-md-10">
+            @Html.DropDownList("CategoryId", null, "Choose Category", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "error" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-success">Add</button>
+            <a href="@Url.Action("Index")" class="btn btn-danger">Cancel</a>
+        </div>
+    </div>
+</div>
+}
